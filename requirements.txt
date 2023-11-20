@@ -1,0 +1,3 @@
+black[jupyter]
+isort
+keras==3.0.1
