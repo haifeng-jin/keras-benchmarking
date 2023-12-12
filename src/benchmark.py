@@ -40,13 +40,13 @@ class BenchmarkMetricsCallback(keras.callbacks.Callback):
 def fit(model, dataset):
     callback = BenchmarkMetricsCallback(stop_batch=NUM_STEPS)
     model.fit(dataset, epochs=1, callbacks=[callback])
-    return 1000.0 / callback.time_per_step
+    return 1000.0 * callback.time_per_step
 
 
 def predict(model, dataset):
     callback = BenchmarkMetricsCallback(stop_batch=NUM_STEPS)
     model.predict(dataset, callbacks=[callback])
-    return 1000.0 / callback.time_per_step
+    return 1000.0 * callback.time_per_step
 
 
 def append_to_file(file_path, content):
