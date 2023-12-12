@@ -14,7 +14,7 @@ def get_dataset():
         "imdb_reviews",
         split="train",
         as_supervised=True,
-        batch_size=8,
+        batch_size=benchmark.BERT_BATCH_SIZE,
     )
     # Force the dataset to cache into memory.
     dataset = dataset.map(preprocessor).cache()
@@ -32,12 +32,16 @@ def get_model():
     )
 
 
-dataset = get_dataset().take(101)
-model = get_model()
-model.compile(
-    loss=keras.losses.SparseCategoricalCrossentropy(from_logits=True),
-    optimizer="adamw",
-)
+def run():
+    dataset = get_dataset().take(benchmark.NUM_STEPS + 1)
+    model = get_model()
+    model.compile(
+        loss=keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+        optimizer="adamw",
+    )
 
-benchmark.fit(model, dataset)
-benchmark.predict(model, dataset)
+    return benchmark.fit(model, dataset), benchmark.predict(model, dataset)
+
+
+if __name__ == "__main__":
+    benchmark.benchmark(run)
