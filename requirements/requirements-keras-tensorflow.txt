@@ -1,0 +1,2 @@
+tensorflow[and-cuda]==2.15.0
+keras==3.0.1
