@@ -1,2 +1,2 @@
-jax[cuda12_pip]==0.4.21
+jax[cuda12_pip]<0.4.22
 keras==3.0.1
