@@ -3,6 +3,7 @@ import keras_nlp
 import tensorflow_datasets as tfds
 
 import benchmark
+import keras_utils
 
 
 def get_dataset():
@@ -40,7 +41,7 @@ def run():
         optimizer="adamw",
     )
 
-    return benchmark.fit(model, dataset), benchmark.predict(model, dataset)
+    return keras_utils.fit(model, dataset), keras_utils.predict(model, dataset)
 
 
 if __name__ == "__main__":
