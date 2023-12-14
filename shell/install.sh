@@ -15,6 +15,7 @@ requirements_files=(
     "requirements-keras-torch.txt"
 )
 
+pip install --upgrade pip
 for ((i=0; i<${#venvs[@]}; i++)); do
     venv_name=${venvs[$i]}
     req_file=${requirements_files[$i]}

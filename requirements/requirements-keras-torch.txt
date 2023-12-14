@@ -1,2 +1,3 @@
-torch==2.1.1
 keras==3.0.1
+keras-nlp-nightly==0.7.0.dev2023121403
+torch==2.1.1
