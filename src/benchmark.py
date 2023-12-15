@@ -1,6 +1,6 @@
 import sys
 
-NUM_STEPS = 10
+NUM_STEPS = 100
 BERT_BATCH_SIZE = 8
 
 

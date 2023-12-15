@@ -26,6 +26,10 @@ for venv_name in "${venvs[@]}"; do
         file_name=keras
     fi
 
+    if [[ $venv_name == tensorflow ]]; then
+        export KERAS_HOME=configs/tensorflow
+    fi
+
     if [[ $venv_name == keras* ]]; then
         export KERAS_HOME=configs/${venv_name#keras-}
     fi
