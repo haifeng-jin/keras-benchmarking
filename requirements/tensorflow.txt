@@ -1,5 +1,4 @@
-tf-nightly[and-cuda]==2.16.0.dev20231210  # Support Python 3.10 and TensorRT
-tf-keras-nightly==2.16.0.dev2023121010
-tensorflow-text-nightly==2.16.0.dev20231210  # Pin a working nightly until rc0.
-keras-nlp-nightly==0.7.0.dev2023121403
+tensorflow[and-cuda]==2.15.0.post1
+tensorflow-text==2.15.0
+keras-nlp==0.6.4
 tensorflow-datasets==4.9.3

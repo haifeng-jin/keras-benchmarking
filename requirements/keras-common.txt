@@ -1,0 +1,4 @@
+keras==3.0.1
+tensorflow-text-nightly==2.16.0.dev20231109  # Pin a working nightly until rc0.
+keras-nlp-nightly==0.7.0.dev2023121403
+tensorflow-datasets==4.9.3
