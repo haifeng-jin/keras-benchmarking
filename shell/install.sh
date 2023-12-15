@@ -15,7 +15,7 @@ for ((i=0; i<${#venvs[@]}; i++)); do
     source ~/.venv/$venv_name/bin/activate
     pip install --upgrade pip
     pip install -r requirements/$venv_name.txt
-    if [[ $venvs_name == keras* ]]; then
+    if [[ $venv_name == keras* ]]; then
         pip install keras==3.0.1
     fi
     deactivate
