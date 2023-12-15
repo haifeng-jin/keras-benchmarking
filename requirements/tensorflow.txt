@@ -1,0 +1,2 @@
+tensorflow[and-cuda]==2.15.0
+tensorflow-datasets==4.9.3
