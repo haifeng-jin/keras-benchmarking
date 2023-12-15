@@ -38,7 +38,7 @@ def run():
     model = get_model()
     model.compile(
         loss=keras.losses.SparseCategoricalCrossentropy(from_logits=True),
-        optimizer="adamw",
+        optimizer=keras.optimizers.AdamW(),
     )
 
     return keras_utils.fit(model, dataset), keras_utils.predict(model, dataset)
