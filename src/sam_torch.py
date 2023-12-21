@@ -24,7 +24,7 @@ def get_model():
     url = "https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth"
     local_filename = "/tmp/sam_vit_h_4b8939.pth"
     download_file(url, local_filename)
-    return segment_anything.build_sam_vit_b(checkpoint=local_filename).cuda()
+    return segment_anything.build_sam_vit_h(checkpoint=local_filename).cuda()
 
 
 def get_dataset():
