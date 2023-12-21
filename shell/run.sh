@@ -18,7 +18,7 @@ fi
 export LD_LIBRARY_PATH=
 
 for venv_name in "${venvs[@]}"; do
-    echo "Running benchmarks for $venv_name." | tee -a $output_file
+    echo "Benchmarking $venv_name" | tee -a $output_file
     source $venv_path/$venv_name/bin/activate
     if [[ $venv_name == torch ]]; then
         file_name=torch
@@ -34,6 +34,11 @@ for venv_name in "${venvs[@]}"; do
         export KERAS_HOME=configs/${venv_name#keras-}
     fi
 
+    echo "Bert:" | tee -a $output_file
     python src/bert_$file_name.py $output_file
+
+    echo "SegmentAnything:" | tee -a $output_file
+    python src/sam_$file_name.py $output_file
+
     deactivate
 done
