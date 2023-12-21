@@ -2,7 +2,7 @@ import sys
 
 NUM_STEPS = 100
 BERT_BATCH_SIZE = 8
-SAM_BATCH_SIZE = 2
+SAM_BATCH_SIZE = 1
 
 
 def append_to_file(file_path, content):
