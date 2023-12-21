@@ -21,19 +21,20 @@ def download_file(url, local_filename):
 
 
 def get_model():
-    url = "https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth"
-    local_filename = "/tmp/sam_vit_b_01ec64.pth"
+    url = "https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth"
+    local_filename = "/tmp/sam_vit_h_4b8939.pth"
     download_file(url, local_filename)
     return segment_anything.build_sam_vit_b(checkpoint=local_filename).cuda()
 
 
 def get_dataset():
-    input_image = torch.Tensor(1, 3, 1024, 1024).cuda()
+    input_image = torch.Tensor(benchmark.SAM_BATCH_SIZE, 3, 1024, 1024).cuda()
     input_point = torch.Tensor([[[500, 375], [250, 375]]]).cuda()
     input_label = torch.Tensor([[1, 2]]).cuda()
     return input_image, input_point, input_label
 
 
+@torch.no_grad
 def inference(model, input_image, input_point, input_label):
     features = model.image_encoder(input_image)
     sparse_embeddings, dense_embeddings = model.prompt_encoder(
@@ -51,6 +52,7 @@ def inference(model, input_image, input_point, input_label):
 def run():
     model = get_model()
     input_image, input_point, input_label = get_dataset()
+    inference(model, input_image, input_point, input_label)
     start_time = time.time()
     for i in range(benchmark.NUM_STEPS):
         inference(model, input_image, input_point, input_label)
