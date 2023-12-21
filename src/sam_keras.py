@@ -20,7 +20,7 @@ def get_dataset():
     }
     return (
         tf.data.Dataset.from_tensor_slices(data)
-        .repeat(benchmark.NUM_STEPS + 1)
+        .repeat((benchmark.NUM_STEPS + 1) * benchmark.SAM_BATCH_SIZE)
         .batch(benchmark.SAM_BATCH_SIZE)
     )
 
