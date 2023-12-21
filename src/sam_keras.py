@@ -1,3 +1,4 @@
+import keras
 import keras_cv
 import numpy as np
 import tensorflow as tf
@@ -7,8 +8,13 @@ import keras_utils
 
 
 def get_dataset():
+    if keras.backend.image_data_format() == "channels_last":
+        images = np.random.rand(1, 1024, 1024, 3)
+    else:
+        images = np.random.rand(1, 3, 1024, 1024)
+
     data = {
-        "images": np.random.rand(1, 1024, 1024, 3),
+        "images": images,
         "points": np.array([[[500, 375], [250, 375]]]),
         "labels": np.array([[1, 2]]),
     }
