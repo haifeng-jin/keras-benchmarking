@@ -25,14 +25,34 @@ def get_dataset():
     )
 
 
+def get_train_dataset():
+    if keras.backend.image_data_format() == "channels_last":
+        images = np.random.rand(1, 1024, 1024, 3)
+        features = np.random.rand(1, 64, 64, 256)
+    else:
+        images = np.random.rand(1, 3, 1024, 1024)
+        features = np.random.rand(1, 256, 64, 64)
+
+    return (
+        tf.data.Dataset.from_tensor_slices((images, features))
+        .repeat((benchmark.NUM_STEPS + 1) * benchmark.SAM_BATCH_SIZE)
+        .batch(benchmark.SAM_BATCH_SIZE)
+    )
+
+
 def get_model():
-    return keras_cv.models.SegmentAnythingModel.from_preset("sam_huge_sa1b")
+    return keras_cv.models.SegmentAnythingModel.from_preset("sam_base_sa1b")
 
 
 def run():
+    train_dataset = get_train_dataset()
     dataset = get_dataset()
     model = get_model()
-    return None, keras_utils.predict(model, dataset)
+    backbone = model.backbone
+    backbone.compile(loss="mse", optimizer="adam")
+    return keras_utils.fit(backbone, train_dataset), keras_utils.predict(
+        model, dataset
+    )
 
 
 if __name__ == "__main__":
