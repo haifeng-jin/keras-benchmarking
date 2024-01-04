@@ -7,19 +7,26 @@ import torch
 
 import benchmark
 
-HUGE_URL = "https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth"
+HUGE_URL = (
+    "https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth"
+)
 HUGE_BUILD = segment_anything.build_sam_vit_h
 HUGE_LOCAL = "/tmp/sam_h.pth"
-LARGE_URL = "https://dl.fbaipublicfiles.com/segment_anything/sam_vit_l_0b3195.pth"
+LARGE_URL = (
+    "https://dl.fbaipublicfiles.com/segment_anything/sam_vit_l_0b3195.pth"
+)
 LARGE_BUILD = segment_anything.build_sam_vit_l
 LARGE_LOCAL = "/tmp/sam_l.pth"
-BASE_URL = "https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth"
+BASE_URL = (
+    "https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth"
+)
 BASE_BUILD = segment_anything.build_sam_vit_b
 BASE_LOCAL = "/tmp/sam_b.pth"
 
 URL = BASE_URL
 LOCAL = BASE_LOCAL
 build_sam = BASE_BUILD
+
 
 def download_file(url, local_filename):
     if not os.path.exists(local_filename):
@@ -81,6 +88,7 @@ def train(model, input_image, y_true):
     end_time = time.time()
 
     return (end_time - start_time) / benchmark.NUM_STEPS * 1000
+
 
 def run():
     model = get_model()

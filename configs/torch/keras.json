@@ -2,5 +2,5 @@
     "floatx": "float32",
     "epsilon": 1e-07,
     "backend": "torch",
-    "image_data_format": "channels_first"
+    "image_data_format": "channels_last"
 }
